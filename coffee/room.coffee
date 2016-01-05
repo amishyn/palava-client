@@ -78,6 +78,12 @@ class palava.Room extends @EventEmitter
 
     @distributor.on 'shutdown', (msg) => @emit 'signaling_shutdown', msg.seconds
 
+  #
+  kickOut: (peer_id) =>
+    @distributor.send
+      event: 'kick_out'
+      peer_id: peer_id
+
   # Join the room
   #
   # @param status [Object] Status of the local user
